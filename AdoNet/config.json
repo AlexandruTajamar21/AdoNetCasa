@@ -1,0 +1,4 @@
+{
+  "CadenaHospitalTajamar": "Data Source=LOCALHOST;Initial Catalog=HOSPITAL2;Persist Security Info=True;User ID=SA;Password=MCSD2021",
+  "CadenaHospitalCasa": "Data Source=LOCALHOST\\SQLEXPRESS;Initial Catalog=Hospital;Persist Security Info=True;User ID=SA;Password=MCSD2021"
+}
