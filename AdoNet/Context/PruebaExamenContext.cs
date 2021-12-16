@@ -26,6 +26,13 @@ namespace AdoNet.Context
 
         public List<Departamento> getDepartamentos()
         {
+
+            /* 
+            create procedure getDepartamentos
+            as
+                select * from DEPT
+            go
+             */
             this.com.CommandType = System.Data.CommandType.StoredProcedure;
             this.com.CommandText = "getDepartamentos";
             this.cn.Open();
@@ -48,6 +55,16 @@ namespace AdoNet.Context
 
         public List<Empleado> getEmpleados(int id)
         {
+
+            /* 
+             create procedure getEmpleados
+	            (@Id int)
+            as
+	
+	            select * from EMP where DEPT_NO = @Id
+
+            go
+             */
             this.com.CommandType = System.Data.CommandType.StoredProcedure;
             this.com.CommandText = "getEmpleados";
             this.com.Parameters.AddWithValue("@Id", id);
@@ -75,6 +92,16 @@ namespace AdoNet.Context
 
         public List<Empleado> getAllEmpleados()
         {
+
+            /* 
+             create procedure getAllEmpleados
+            as
+	
+	            select * from EMP
+
+            go
+            este esta por sql pero lo he creado por si lo quereis ver
+             */
             string sql = "select* from emp";
             this.com.CommandType = System.Data.CommandType.Text;
             this.com.CommandText = sql;
@@ -102,6 +129,15 @@ namespace AdoNet.Context
 
         public void insertarEmpleado(Empleado emp)
         {
+
+            /* 
+            create procedure insertarEmpleado
+	            (@ID INT, @APELLIDO NVARCHAR(50),@OFICIO NVARCHAR(50),@SALARIO INT,@COMISION INT,@DEPARTAMENTO INT)
+            AS
+	            INSERT INTO EMP(EMP_NO, APELLIDO, OFICIO, SALARIO,COMISION,DEPT_NO)
+	            VALUES (@ID, @APELLIDO, @OFICIO, @SALARIO,@COMISION,@DEPARTAMENTO);
+            GO
+             */
             this.com.CommandType = System.Data.CommandType.StoredProcedure;
             this.com.CommandText = "insertarEmpleado";
             this.com.Parameters.AddWithValue("@ID", emp.IdEmpleado);
@@ -119,6 +155,13 @@ namespace AdoNet.Context
 
         public Empleado getEmpleadoID(int id)
         {
+            /* 
+             create procedure getEmpleadoId
+	            (@ID INT)
+            as
+	            select * from EMP where EMP_NO = @ID
+            go
+             */
             this.com.CommandType = System.Data.CommandType.StoredProcedure;
             this.com.CommandText = "getEmpleadoId";
             this.com.Parameters.AddWithValue("@Id", id);
@@ -142,6 +185,13 @@ namespace AdoNet.Context
 
         internal void eliminarEmpleado(int id)
         {
+            /* 
+             create procedure deleteEmpleado
+	            (@ID INT)
+            as
+	            delete from EMP where EMP_NO = @ID
+            go
+             */
             this.com.CommandType = System.Data.CommandType.StoredProcedure;
             this.com.CommandText = "deleteEmpleado";
             this.com.Parameters.AddWithValue("@ID", id);
@@ -154,6 +204,15 @@ namespace AdoNet.Context
 
         internal void modificarEmpleado(Empleado emp)
         {
+            /* 
+             create PROCEDURE UPDATEEMPLEADOS
+	            (@IDEMPLEADO int, @APELLIDO nvarchar(50), @OFICIO nvarchar(50),@SALARIO int,@COMISION int,@IDDEPT int)
+            AS
+	            update EMP 
+	            set APELLIDO = @APELLIDO, OFICIO = @OFICIO, SALARIO = @SALARIO, COMISION = @COMISION, DEPT_NO = @IDDEPT
+	            where emp_no = @IDEMPLEADO
+            GO
+             */
             this.com.CommandType = System.Data.CommandType.StoredProcedure;
             this.com.CommandText = "UPDATEEMPLEADOS";
             this.com.Parameters.AddWithValue("@IDEMPLEADO", emp.IdEmpleado);
